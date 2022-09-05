@@ -17,13 +17,10 @@ Main idea is to get `access token` for session authentication and use `refresh t
 - Authentication header is automatically set everytime `Login` or `Refresh` endpoint called (see AUTH POC Collection -> Test)
 - If `access token` is expired, try use `Refresh` endpoint to get new token
 
-
 ## Endpoints
 for more detail, please use [this postman collection](https://github.com/adepuu/auth-poc/blob/main/files/documents/AuthPOC.postman_collection.json)
-### Auth
-- 
 
-**postman collection** : [here](https://github.com/adepuu/auth-poc/blob/main/files/documents/AuthPOC.postman_collection.json)
+**postman collection** : [here](https://github.com/adepuu/auth-poc/blob/main/files/documents/AuthPOC.postman_collection.json) and 
 **gRPC test tool** : [grpcox](https://github.com/gusaul/grpcox)
 
 ### Reset Data
