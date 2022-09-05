@@ -1,11 +1,8 @@
-pkgs          = $(shell go list ./... | grep -vE '(vendor|mock)')
 NOW=$(shell date)
 compose_file=./docker/docker-compose.yml
 compose=docker-compose -f ${compose_file}
 auth_service_binary=auth
 user_service_binary=user
-warehouse_service_binary=warehouse
-current_dir=$(shell pwd)
 
 docker-start:
 	@echo "${NOW} STARTING CONTAINER..."
