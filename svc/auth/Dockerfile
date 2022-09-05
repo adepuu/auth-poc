@@ -4,4 +4,5 @@ RUN mkdir /app
 ADD . /app
 WORKDIR /app
 RUN go build -gcflags="all=-N -l" -o main .
-CMD ["/app/main --env development  --pid-file auth.pid &>>auth.log & disown"]
+EXPOSE 8001 30001
+CMD ["/app/main --env development"]
