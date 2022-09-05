@@ -15,10 +15,10 @@ docker-run-auth:
 	@echo "${NOW} BUILDING..."
 	@cd ./svc/auth && go mod vendor && go build -gcflags="all=-N -l" -o ./../../bin/${auth_service_binary} ./main.go
 	@echo "${NOW} RUNNING..."
-	@docker exec -it auth /usr/local/bin/${auth_service_binary}
+	@docker exec -it auth /usr/local/bin/${auth_service_binary} --env development  --pid-file messaging-app.pid &>>messaging-app.log & disown
 
 docker-run-user:
 	@echo "${NOW} BUILDING..."
 	@cd ./svc/user && go mod vendor && go build -gcflags="all=-N -l" -o ./../../bin/${user_service_binary} ./main.go
 	@echo "${NOW} RUNNING..."
-	@docker exec -it user /usr/local/bin/${user_service_binary}
+	@docker exec -it user /usr/local/bin/${user_service_binary} --env development  --pid-file messaging-app.pid &>>messaging-app.log & disown
