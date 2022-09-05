@@ -1,0 +1,20 @@
+syntax = "proto3";
+option go_package = "pb/;pb";
+package pb;
+
+
+service User {
+  rpc GetUserByPhoneNumber(GetUserByPhoneNumberArgs) returns (UserData);
+}
+
+message GetUserByPhoneNumberArgs {
+  string phoneNumber = 1;
+}
+
+message UserData {
+  string email = 1;
+  string fullName = 2;
+  string phoneNumber = 3;
+  string userID = 4;
+  uint32 userType = 5;
+}

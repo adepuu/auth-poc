@@ -1,0 +1,32 @@
+syntax = "proto3";
+option go_package = "pb/;pb";
+package pb;
+
+
+service Auth {
+  rpc CheckAuth(CheckAuthArgs) returns (CheckAuthReply);
+  rpc StorePassword(StorePasswordRequest) returns (StateReply);
+  rpc RemovePassword(RemovePasswordRequest) returns (StateReply);
+}
+
+message CheckAuthArgs {
+  string token = 1;
+}
+message CheckAuthReply {
+  bool isAuthorized = 1;
+  string userID = 2;
+  uint32 userType = 3;
+}
+
+message StorePasswordRequest {
+  string rawPassword = 1;
+  string phoneNumber = 2;
+}
+
+message RemovePasswordRequest {
+  string phoneNumber = 1;
+}
+
+message StateReply {
+  bool success = 1;
+}

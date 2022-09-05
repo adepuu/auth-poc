@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+PROTOC=
+
+if which protoc >/dev/null; then
+  PROTOC=`which protoc`
+else
+  echo "protoc executable not found" >2
+  exit 1
+fi
+
+if ! which protoc-gen-go > /dev/null; then
+  echo "protoc-gen-go executable not found" >2
+  exit 1
+fi
+
+$PROTOC --go_out=adapter/grpc --go-grpc_out=adapter/grpc -I adapter/grpc/proto adapter/grpc/proto/*proto
