@@ -17,12 +17,14 @@ Main idea is to get `access token` for session authentication and use `refresh t
 - Authentication header is automatically set everytime `Login` or `Refresh` endpoint called (see AUTH POC Collection -> Test)
 - If `access token` is expired, try use `Refresh` endpoint to get new token
 
-**postman collection login staging** : https://www.getpostman.com/collections/b93ea1f4d200eb85385d
 
+## Endpoints
+for more detail, please use [this postman collection](https://github.com/adepuu/auth-poc/blob/main/files/documents/AuthPOC.postman_collection.json)
+### Auth
+- 
 
-### Run service
-For Testing you use [this postman](https://github.com/adepuu/auth-poc/blob/main/files/documents/AuthPOC.postman_collection.json)
-To test Grpc  [grpcox](https://github.com/gusaul/grpcox)
+**postman collection** : [here](https://github.com/adepuu/auth-poc/blob/main/files/documents/AuthPOC.postman_collection.json)
+**gRPC test tool** : [grpcox](https://github.com/gusaul/grpcox)
 
 ### Reset Data
 - Run `make docker-rebuilddb` to reset data
