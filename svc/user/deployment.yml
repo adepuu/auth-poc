@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: user
+  template:
+    metadata:
+      labels:
+        name: user
+    spec:
+      containers:
+      - name: application
+        image: user-poc/user
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 3000

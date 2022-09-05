@@ -7,7 +7,7 @@ services:
       dockerfile: DockerFile
     container_name: auth
     volumes:
-      - ./../bin/auth/:/usr/local/bin
+      - ./../bin/auth/:/usr/local/go/bin
     ports:
       - "8001:8001"
       - "30001:30001"
@@ -26,7 +26,7 @@ services:
       dockerfile: DockerFile
     container_name: user
     volumes:
-      - ./../bin/user/:/usr/local/bin
+      - ./../bin/user/:/usr/local/go/bin
     ports:
       - "8002:8002"
       - "30002:30002"

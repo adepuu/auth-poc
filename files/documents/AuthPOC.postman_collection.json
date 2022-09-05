@@ -1,0 +1,263 @@
+{
+	"info": {
+		"_postman_id": "039e5f9d-7c08-4c5e-a431-9caf74ffe288",
+		"name": "AUTH POC",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4925962"
+	},
+	"item": [
+		{
+			"name": "AUTH",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Refresh-Token",
+								"value": "{{refresh_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "phone_number",
+									"value": "6285151500400",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "sapananya2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{auth_url}}/login",
+							"host": [
+								"{{auth_url}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Refresh-Token",
+								"value": "{{refresh_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{auth_url}}/refresh",
+							"host": [
+								"{{auth_url}}"
+							],
+							"path": [
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "USER",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"pepe2@mail.com\",\n    \"full_name\": \"sad pepe2\",\n    \"phone_number\": \"6285151500400\",\n    \"password\": \"sapananya\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{user_url}}/register",
+							"host": [
+								"{{user_url}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Data",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"pepe2-update1@mail.com\",\n    \"full_name\": \"sad pepe2 - updateee\",\n    \"password\": \"sapananya2\",\n    \"user_type\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{user_url}}/internal/update/6314f8e1677685ecaa21cc0a",
+							"host": [
+								"{{user_url}}"
+							],
+							"path": [
+								"internal",
+								"update",
+								"6314f8e1677685ecaa21cc0a"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{user_url}}/internal/delete/63148c7720ae83b376241da1",
+							"host": [
+								"{{user_url}}"
+							],
+							"path": [
+								"internal",
+								"delete",
+								"63148c7720ae83b376241da1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Detail User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{user_url}}/internal/detail",
+							"host": [
+								"{{user_url}}"
+							],
+							"path": [
+								"internal",
+								"detail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Profile",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{user_url}}/regular/profile",
+							"host": [
+								"{{user_url}}"
+							],
+							"path": [
+								"regular",
+								"profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "All User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{user_url}}/internal/all-user?limit=1&page=1",
+							"host": [
+								"{{user_url}}"
+							],
+							"path": [
+								"internal",
+								"all-user"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "1"
+								},
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{access_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"var jsonData = JSON.parse(responseBody);",
+					"if (jsonData.data && jsonData.data.access_token && jsonData.data.refresh_token) {",
+					"    postman.setEnvironmentVariable(\"access_token\", jsonData.data.access_token);",
+					"    postman.setEnvironmentVariable(\"refresh_token\", jsonData.data.refresh_token);",
+					"}"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "access_token",
+			"value": ""
+		},
+		{
+			"key": "refresh_token",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
