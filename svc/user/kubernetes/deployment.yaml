@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: user-poc-user
+  labels:
+    client: internal
+    version: 1.0.0
+    environtment: dev
+  annotations:
+      description: learn kube
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: user-poc-user
+  template:
+    metadata:
+      name: user-poc-user-pod
+      labels:
+        app: user-poc-user
+    spec:
+      containers:
+        - name: user-poc-user
+          image: gcr.io/tidy-bounty-361203/user-poc-user
+          ports:
+            - containerPort: 5000

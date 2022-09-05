@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-poc-auth
+  labels:
+    client: internal
+    version: 1.0.0
+    environtment: dev
+  annotations:
+      description: learn kube
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: auth-poc-auth
+  template:
+    metadata:
+      name: auth-poc-auth-pod
+      labels:
+        app: auth-poc-auth
+    spec:
+      containers:
+        - name: auth-poc-auth
+          image: gcr.io/tidy-bounty-361203/auth-poc-auth
+          ports:
+            - containerPort: 5000
