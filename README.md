@@ -23,5 +23,20 @@ for more detail, please use [this postman collection](https://github.com/adepuu/
 **postman collection** : [here](https://github.com/adepuu/auth-poc/blob/master/files/documents/AuthPOC.postman_collection.json) and 
 **gRPC test tool** : [grpcox](https://github.com/gusaul/grpcox)
 
-### Reset Data
-- Run `make docker-rebuilddb` to reset data
+### Flowcharts
+- Entity Diagram
+![alt text](https://github.com/adepuu/auth-poc/blob/master/files/flowcharts/entity.png)
+- Login
+![alt text](https://github.com/adepuu/auth-poc/blob/master/files/flowcharts/login.png)
+- Refresh Token
+![alt text](https://github.com/adepuu/auth-poc/blob/master/files/flowcharts/refresh-token.png)
+- Register
+![alt text](https://github.com/adepuu/auth-poc/blob/master/files/flowcharts/register.png)
+- Profile
+![alt text](https://github.com/adepuu/auth-poc/blob/master/files/flowcharts/profile.png)
+- Update User
+![alt text](https://github.com/adepuu/auth-poc/blob/master/files/flowcharts/update-user.png)
+- User Detail
+![alt text](https://github.com/adepuu/auth-poc/blob/master/files/flowcharts/user-detail.png)
+- Delete User
+![alt text](https://github.com/adepuu/auth-poc/blob/master/files/flowcharts/delete-user.png)
