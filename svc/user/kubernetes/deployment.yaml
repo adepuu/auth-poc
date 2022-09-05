@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: user-poc-user
+  name: auth-poc-user
   labels:
     client: internal
     version: 1.0.0
@@ -12,15 +12,15 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: user-poc-user
+      app: auth-poc-user
   template:
     metadata:
-      name: user-poc-user-pod
+      name: auth-poc-user-pod
       labels:
-        app: user-poc-user
+        app: auth-poc-user
     spec:
       containers:
-        - name: user-poc-user
-          image: gcr.io/tidy-bounty-361203/user-poc-user
+        - name: auth-poc-user
+          image: gcr.io/tidy-bounty-361203/auth-poc-user
           ports:
             - containerPort: 5000

@@ -9,4 +9,4 @@ spec:
       - path: /
         backend:
           serviceName: auth-poc-auth-service
-          servicePort: 8001
+          servicePort: 31001

@@ -12,11 +12,7 @@ spec:
   type: LoadBalancer
   ports:
     - name: http
-      nodePort: 80
-      port: 8001
-      targetPort: 8001
-    - name: https
-      nodePort: 443
+      nodePort: 31001
       port: 8001
       targetPort: 8001
     - name: rpc
