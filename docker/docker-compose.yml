@@ -2,9 +2,7 @@ version: '3.1'
 services:
   auth:
     image: "ubuntu:14.04"
-    build:
-      context: .
-      dockerfile: Dockerfile
+    build: .
     container_name: auth
     volumes:
       - ./../bin/auth/:/usr/local/bin
@@ -21,9 +19,7 @@ services:
 
   user:
     image: "ubuntu:14.04"
-    build:
-      context: .
-      dockerfile: Dockerfile
+    build: .
     container_name: user
     volumes:
       - ./../bin/user/:/usr/local/bin
