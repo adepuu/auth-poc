@@ -16,7 +16,7 @@ spec:
       port: 8001
       targetPort: 8001
     - name: rpc
-      nodePort: 50001
+      nodePort: 31111
       port: 30001
       targetPort: 30001
   selector:
