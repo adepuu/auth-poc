@@ -3,6 +3,7 @@ RUN apk update && apk add --virtual build-dependencies build-base gcc wget git
 RUN mkdir /app
 ADD . /app
 WORKDIR /app
+RUN go mod tidy
 RUN go build -gcflags="all=-N -l" -o main .
-EXPOSE 8001 30001
-CMD ["/app/main --env development  --pid-file user.pid &>>user.log & disown"]
+EXPOSE 8002 30002
+CMD ["/app/main", "--env", "development"]
