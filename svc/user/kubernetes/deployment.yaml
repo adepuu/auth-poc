@@ -9,7 +9,7 @@ metadata:
   annotations:
       description: learn kube
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: auth-poc-user
