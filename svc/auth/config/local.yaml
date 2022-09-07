@@ -1,7 +1,6 @@
 HTTP_HOST: "localhost"
 HTTP_PORT: "8001"
-MONGODB_HOST: "localhost"
-MONGODB_PORT: "27017"
+MONGODB_URI: "mongodb://localhost:27017/?ssl=false"
 RPC_DEFAULT_HOST: "localhost"
 RPC_PORT_AUTH_APP: "30001"
 RPC_USER_SERVICE: "30002"
