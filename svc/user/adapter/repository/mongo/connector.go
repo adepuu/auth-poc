@@ -2,7 +2,6 @@ package mongo
 
 import (
 	"context"
-	"fmt"
 
 	"auth-poc/svc/user/config"
 	"auth-poc/svc/user/constants"
@@ -19,7 +18,7 @@ type DB struct {
 }
 
 func getURI(config config.Config) string {
-	return fmt.Sprintf("mongodb://%s:%s/", config.MongoDBHost, config.MongoDBPort)
+	return config.MongoDBURI
 }
 
 func New(config config.Config) (*DB, error) {

@@ -7,9 +7,7 @@ import (
 type Config struct {
 	HttpHost       string `mapstructure:"HTTP_HOST"`
 	HttpPort       string `mapstructure:"HTTP_PORT"`
-	MongoDBHost    string `mapstructure:"MONGODB_HOST"`
-	MongoDBPort    string `mapstructure:"MONGODB_PORT"`
-	MongoDBName    string `mapstructure:"MONGODB_NAME"`
+	MongoDBURI     string `mapstructure:"MONGODB_URI"`
 	RpcDefaultHost string `mapstructure:"RPC_DEFAULT_HOST"`
 	RpcPortUserApp string `mapstructure:"RPC_PORT_USER_APP"`
 	RpcAuthService string `mapstructure:"RPC_AUTH_SERVICE"`
