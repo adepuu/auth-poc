@@ -13,7 +13,7 @@ spec:
   ports:
     - name: http
       nodePort: 31002
-      port: 8002
+      port: 80
       targetPort: 8002
     - name: rpc
       nodePort: 31112

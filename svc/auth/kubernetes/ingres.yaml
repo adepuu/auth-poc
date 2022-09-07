@@ -1,4 +1,4 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: auth-poc-auth-ingress
@@ -7,6 +7,9 @@ spec:
   - http:
       paths:
       - path: /
+        pathType: Prefix
         backend:
-          serviceName: auth-poc-auth-service
-          servicePort: 31001
+          service:
+            name: auth-poc-auth-service
+            port:
+              number: 80

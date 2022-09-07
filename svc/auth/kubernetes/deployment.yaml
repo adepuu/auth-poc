@@ -23,4 +23,6 @@ spec:
         - name: auth-poc-auth
           image: gcr.io/tidy-bounty-361203/auth-poc-auth
           ports:
-            - containerPort: 5000
+            - containerPort: 8001
+            - containerPort: 30001
+            
