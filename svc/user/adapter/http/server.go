@@ -9,7 +9,7 @@ import (
 	"net/http"
 
 	handlers "auth-poc/svc/user/application/handlers/http"
-	middleware "auth-poc/svc/user/application/middleware/http"
+	"auth-poc/svc/user/application/middleware"
 	"auth-poc/svc/user/application/usecase"
 	"auth-poc/svc/user/config"
 
@@ -18,8 +18,8 @@ import (
 
 // Register another usecases below
 type Options struct {
-	User           usecase.UserUseCase
-	AuthMiddleware *middleware.Auth
+	User       usecase.UserUseCase
+	Middleware *middleware.Interactors
 }
 type Server struct {
 	Options *Options
@@ -51,13 +51,14 @@ func (s *Server) Run(config config.Config) error {
 
 func (s *Server) SetupRoutes() {
 	h := handlers.UserHttpHandler{UserUseCase: s.Options.User}
-	regularRoutes := s.Router.Group("/regular").Use(s.Options.AuthMiddleware.ValidateToken)
+	regularRoutes := s.Router.Group("/regular").Use(s.Options.Middleware.ValidateToken)
 	internalRoutes := s.Router.Group("/internal")
-	internalRoutes.Use(s.Options.AuthMiddleware.ValidateToken)
-	internalRoutes.Use(s.Options.AuthMiddleware.AdminOnly)
+	internalRoutes.Use(s.Options.Middleware.ValidateToken)
+	internalRoutes.Use(s.Options.Middleware.AdminOnly)
 
 	// Public Routes
 	s.Router.POST("/register", h.Register)
+	s.Router.GET("/health", s.Options.Middleware.HealthCheck())
 
 	//Regular -> registered regular user Routes
 	regularRoutes.GET("/profile", h.Profile)

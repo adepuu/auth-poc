@@ -14,6 +14,7 @@ import (
 	http "auth-poc/svc/auth/adapter/http"
 	"auth-poc/svc/auth/adapter/repository/mongo"
 	"auth-poc/svc/auth/application/dao"
+	"auth-poc/svc/auth/application/middleware"
 	"auth-poc/svc/auth/application/service"
 	"auth-poc/svc/auth/application/usecase"
 	"auth-poc/svc/auth/config"
@@ -61,12 +62,17 @@ func main() {
 	authSvc := service.NewAuthService(authDao)
 	authUseCase := usecase.NewAuthUseCase(authSvc)
 
+	middleware := middleware.NewMiddleware(&middleware.Interactors{
+		DataStore: dataStore,
+	})
+
 	rpcServer := grpc.NewGrpcServer(&grpc.UseCases{
 		Auth: *authUseCase,
 	})
 
 	httpHandler := http.NewHttpHandler(&http.Options{
-		Auth: *authUseCase,
+		Auth:       *authUseCase,
+		Middleware: middleware,
 	})
 
 	httpHandler.SetupRoutes()

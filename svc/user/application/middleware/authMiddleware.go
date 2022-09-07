@@ -12,7 +12,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func (a *Auth) ValidateToken(ctx *gin.Context) {
+func (i *Interactors) ValidateToken(ctx *gin.Context) {
 	rpcCtx, cancel := context.WithTimeout(context.Background(), constants.DEFAULT_TIMEOUT)
 	defer cancel()
 
@@ -20,7 +20,7 @@ func (a *Auth) ValidateToken(ctx *gin.Context) {
 	authHeader := ctx.GetHeader("Authorization")
 	tokenString := authHeader[len(constants.BEARER_SCHEMA):]
 
-	result, err := a.RpcClients.Auth.CheckAuth(rpcCtx, &pb.CheckAuthArgs{
+	result, err := i.RpcClients.Auth.CheckAuth(rpcCtx, &pb.CheckAuthArgs{
 		Token: strings.TrimSpace(tokenString),
 	})
 
@@ -40,7 +40,7 @@ func (a *Auth) ValidateToken(ctx *gin.Context) {
 	}
 }
 
-func (a *Auth) AdminOnly(ctx *gin.Context) {
+func (i *Interactors) AdminOnly(ctx *gin.Context) {
 	resp := response.WrapResponse(ctx)
 	userType := ctx.GetInt(constants.USER_TYPE_CTX)
 

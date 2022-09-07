@@ -9,6 +9,7 @@ import (
 	"net/http"
 
 	handlers "auth-poc/svc/auth/application/handlers/http"
+	"auth-poc/svc/auth/application/middleware"
 	"auth-poc/svc/auth/application/usecase"
 	"auth-poc/svc/auth/config"
 
@@ -17,7 +18,8 @@ import (
 
 // Register another usecases below
 type Options struct {
-	Auth usecase.AuthUseCase
+	Auth       usecase.AuthUseCase
+	Middleware *middleware.Interactors
 }
 type Server struct {
 	Options *Options
@@ -51,6 +53,7 @@ func (s *Server) SetupRoutes() {
 	h := handlers.AuthHttpHandler{AuthUseCase: s.Options.Auth}
 	s.Router.POST("/login", h.Login)
 	s.Router.GET("/refresh", h.RefreshToken)
+	s.Router.GET("/health", s.Options.Middleware.HealthCheck())
 }
 
 func (s *Server) Shutdown() error {
