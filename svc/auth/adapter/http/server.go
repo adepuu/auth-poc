@@ -54,6 +54,7 @@ func (s *Server) SetupRoutes() {
 	s.Router.POST("/login", h.Login)
 	s.Router.GET("/refresh", h.RefreshToken)
 	s.Router.GET("/health", s.Options.Middleware.HealthCheck())
+	s.Router.GET("/", s.Options.Middleware.HealthCheck())
 }
 
 func (s *Server) Shutdown() error {

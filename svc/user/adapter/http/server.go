@@ -59,6 +59,7 @@ func (s *Server) SetupRoutes() {
 	// Public Routes
 	s.Router.POST("/register", h.Register)
 	s.Router.GET("/health", s.Options.Middleware.HealthCheck())
+	s.Router.GET("/", s.Options.Middleware.HealthCheck())
 
 	//Regular -> registered regular user Routes
 	regularRoutes.GET("/profile", h.Profile)
