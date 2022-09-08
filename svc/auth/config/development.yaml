@@ -1,6 +1,6 @@
 HTTP_HOST: "0.0.0.0"
 HTTP_PORT: "8001"
 MONGODB_URI: "mongodb+srv://frogfoot:donttellanyone@mongodb-svc.mongodb.svc.cluster.local/account?authSource=admin&replicaSet=mongodb&ssl=false"
-RPC_DEFAULT_HOST: "localhost"
+RPC_DEFAULT_HOST: "0.0.0.0"
 RPC_PORT_AUTH_APP: "30001"
 RPC_USER_SERVICE: "30002"
