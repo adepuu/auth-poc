@@ -1,0 +1,40 @@
+# Ingress for -> Auth Service
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: auth-poc-auth-ingress
+  annotations:
+    kubernetes.io/ingress.class: "gce"
+    kubernetes.io/ingress.allow-http: "true"
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /*
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: auth-poc-auth-service
+            port:
+              number: 80
+
+---
+# Ingress for -> User Service
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: auth-poc-user-ingress
+  annotations:
+    kubernetes.io/ingress.class: "gce"
+    kubernetes.io/ingress.allow-http: "true"
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /*
+        pathType: ImplementationSpecific
+        backend:
+          service:
+            name: auth-poc-user-service
+            port:
+              number: 80

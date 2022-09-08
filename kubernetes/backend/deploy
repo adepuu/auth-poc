@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+docker build -t auth-poc-auth ./svc/auth/
+docker tag auth-poc-auth gcr.io/tidy-bounty-361203/auth-poc-auth
+gcloud docker -- push gcr.io/tidy-bounty-361203/auth-poc-auth
+docker build -t auth-poc-user ./svc/user/
+docker tag auth-poc-user gcr.io/tidy-bounty-361203/auth-poc-user
+gcloud docker -- push gcr.io/tidy-bounty-361203/auth-poc-user
+
+kubectl apply -f svc/auth/kubernetes/deployment.yaml -n mongodb
+kubectl apply -f svc/user/kubernetes/deployment.yaml -n mongodb
+
+kubectl apply -f svc/auth/kubernetes/service.yaml -n mongodb
+kubectl apply -f svc/user/kubernetes/service.yaml -n mongodb
+
+kubectl apply -f svc/auth/kubernetes/ingres.yaml -n mongodb
+kubectl apply -f svc/user/kubernetes/ingres.yaml -n mongodb

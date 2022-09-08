@@ -69,6 +69,23 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{auth_url}}/health",
+							"host": [
+								"{{auth_url}}"
+							],
+							"path": [
+								"health"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -207,6 +224,23 @@
 									"key": "page",
 									"value": "1"
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Health",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{user_url}}/health",
+							"host": [
+								"{{user_url}}"
+							],
+							"path": [
+								"health"
 							]
 						}
 					},

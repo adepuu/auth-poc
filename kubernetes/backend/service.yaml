@@ -1,0 +1,50 @@
+# Service Script for -> Auth Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: auth-poc-auth-service
+  labels:
+    client: internal
+    version: 1.0.1
+    environtment: dev
+  annotations:
+    description: Practice Kubernetes Service
+spec:
+  type: LoadBalancer
+  ports:
+    - name: http
+      nodePort: 31001
+      port: 80
+      targetPort: 8001
+    - name: rpc
+      nodePort: 31111
+      port: 30001
+      targetPort: 30001
+  selector:
+    app: auth-poc-auth
+
+---
+# Service Script for -> User Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: auth-poc-user-service
+  labels:
+    client: internal
+    version: 1.0.1
+    environtment: dev
+  annotations:
+    description: Practice Kubernetes Service
+spec:
+  type: LoadBalancer
+  ports:
+    - name: http
+      nodePort: 31002
+      port: 80
+      targetPort: 8002
+    - name: rpc
+      nodePort: 31112
+      port: 30002
+      targetPort: 30002
+  selector:
+    app: auth-poc-user
