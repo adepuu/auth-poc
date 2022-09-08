@@ -3,7 +3,6 @@ package usecase
 import (
 	"auth-poc/svc/user/application/dto"
 	"auth-poc/svc/user/application/entity"
-	"auth-poc/svc/user/constants"
 )
 
 func (u *UserUseCase) GetUserByKey(userID, phoneNumber string) (*entity.User, error) {
@@ -23,7 +22,7 @@ func (u *UserUseCase) Register(req *dto.RegisterRequest) (*entity.User, error) {
 		Email:       req.Email,
 		PhoneNumber: req.PhoneNumber,
 		FullName:    req.FullName,
-		UserType:    uint32(constants.USER_TYPE_REGULAR),
+		UserType:    req.UserType,
 	})
 
 	if err != nil {

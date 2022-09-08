@@ -17,12 +17,26 @@ type UserHttpHandler struct {
 
 func (h *UserHttpHandler) Register(ctx *gin.Context) {
 	resp := response.WrapResponse(ctx)
+	asAdminQuestion := ctx.DefaultQuery("as_admin", "")
+
 	var input dto.RegisterRequest
 
 	err := ctx.BindJSON(&input)
 	if err != nil {
 		resp.BadRequest("invalid json data", err)
 		return
+	}
+
+	// Testing only -> handle admin register
+	// TODO: Remove after creating init DB data hooks
+	if input.UserType == uint32(constants.USER_TYPE_SUPER_ADMIN) && asAdminQuestion != constants.AS_ADMIN_VALUE {
+		log.Infof("[User Handler][Register] Cant register as Admin")
+		resp.Forbidden("Cant register as Admin: it's dangerous")
+		return
+	}
+
+	if input.UserType == 0 {
+		input.UserType = uint32(constants.USER_TYPE_REGULAR)
 	}
 
 	if len(input.PhoneNumber) <= 6 {

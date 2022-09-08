@@ -5,8 +5,9 @@ import "go.mongodb.org/mongo-driver/bson/primitive"
 type RegisterRequest struct {
 	Email       string `json:"email"`
 	FullName    string `json:"full_name"`
-	PhoneNumber string `json:"phone_number,omitempty"`
 	Password    string `json:"password,omitempty"`
+	PhoneNumber string `json:"phone_number,omitempty"`
+	UserType    uint32 `json:"user_type"`
 }
 
 type UpdateRequest struct {
