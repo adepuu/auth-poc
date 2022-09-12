@@ -2,8 +2,8 @@
 A simple/minimal authentication and authorization proof of concept using JWT.
 
 ## Development
-- Test Admin ID: `6285151500400`
-- Test Admin Password : `sapananya2`
+- Test Admin ID: `081312341234`
+- Test Admin Password : `sapananya`
 
 ## How to set session
 Main idea is to get `access token` for session authentication and use `refresh token` when `access token` expired.

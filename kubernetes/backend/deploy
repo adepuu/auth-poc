@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-docker build -t auth-poc-auth ./
+docker build -t auth-poc-auth ./svc/auth/
 docker tag auth-poc-auth gcr.io/tidy-bounty-361203/auth-poc-auth
 gcloud docker -- push gcr.io/tidy-bounty-361203/auth-poc-auth
 docker build -t auth-poc-user ./svc/user/

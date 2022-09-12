@@ -25,13 +25,19 @@
 							"formdata": [
 								{
 									"key": "phone_number",
-									"value": "6285151500400",
+									"value": "081312341234",
 									"type": "text"
 								},
 								{
 									"key": "password",
-									"value": "sapananya2",
+									"value": "sapananya",
 									"type": "text"
+								},
+								{
+									"key": "http://34.128.105.112/",
+									"value": "",
+									"type": "text",
+									"disabled": true
 								}
 							]
 						},
@@ -99,7 +105,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"pepe2@mail.com\",\n    \"full_name\": \"sad pepe2\",\n    \"phone_number\": \"6285151500400\",\n    \"password\": \"sapananya\"\n}",
+							"raw": "{\n    \"email\": \"lebah.ganteng@mail.com\",\n    \"full_name\": \"Pein Akatsuki\",\n    \"phone_number\": \"081312341234\",\n    \"password\": \"sapananya\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -107,12 +113,18 @@
 							}
 						},
 						"url": {
-							"raw": "{{user_url}}/register",
+							"raw": "{{user_url}}/register?as_admin={{as_admin}}",
 							"host": [
 								"{{user_url}}"
 							],
 							"path": [
 								"register"
+							],
+							"query": [
+								{
+									"key": "as_admin",
+									"value": "{{as_admin}}"
+								}
 							]
 						}
 					},
