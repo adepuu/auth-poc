@@ -7,8 +7,17 @@ docker build -t auth-poc-user ./svc/user/
 docker tag auth-poc-user gcr.io/tidy-bounty-361203/auth-poc-user
 gcloud docker -- push gcr.io/tidy-bounty-361203/auth-poc-user
 
+
+openssl genrsa -out auth-poc-auth-service.key 2048
+openssl req -new -key auth-poc-auth-service.key -out auth-poc-auth-service.csr -subj "/CN=auth-poc-auth-service.mongodb.svc.cluster.local"
+openssl x509 -req -days 365 -in auth-poc-auth-service.csr -signkey auth-poc-auth-service.key -out auth-poc-auth-service.crt
+
+openssl genrsa -out auth-poc-user-service.key 2048
+openssl req -new -key auth-poc-user-service.key -out auth-poc-user-service.csr -subj "/CN=auth-poc-user-service.mongodb.svc.cluster.local"
+openssl x509 -req -days 365 -in auth-poc-user-service.csr -signkey auth-poc-user-service.key -out auth-poc-user-service.crt
+
+kubectl create secret tls auth-poc-auth-secret --cert auth-poc-auth-service.crt --key auth-poc-auth-service.key -n mongodb
+kubectl create secret tls auth-poc-user-secret --cert auth-poc-user-service.crt --key auth-poc-user-service.key -n mongodb
 kubectl apply -f kubernetes/backend/deployment.yaml -n mongodb
-
 kubectl apply -f kubernetes/backend/service.yaml -n mongodb
-
 kubectl apply -f kubernetes/backend/ingres.yaml -n mongodb

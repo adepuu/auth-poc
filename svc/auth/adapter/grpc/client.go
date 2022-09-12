@@ -20,7 +20,7 @@ type Clients struct {
 func New(config config.Config) (*Clients, error) {
 	log.Infof("[GRPC][Client] Initializing clients conn with rpc servers")
 	UserConn, e := grpc.Dial(
-		net.JoinHostPort(config.RpcDefaultHost, config.RpcUserService),
+		net.JoinHostPort(config.RpcUserHost, config.RpcUserService),
 		grpc.WithTransportCredentials(insecure.NewCredentials()),
 		// grpc.WithBlock(),
 	)

@@ -10,6 +10,7 @@ type Config struct {
 	MongoDBURI     string `mapstructure:"MONGODB_URI"`
 	RpcDefaultHost string `mapstructure:"RPC_DEFAULT_HOST"`
 	RpcPortAuthApp string `mapstructure:"RPC_PORT_AUTH_APP"`
+	RpcUserHost    string `mapstructure:"RPC_USER_HOST"`
 	RpcUserService string `mapstructure:"RPC_USER_SERVICE"`
 }
 

@@ -38,3 +38,33 @@ spec:
             name: auth-poc-user-service
             port:
               number: 80
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: auth-poc-grpc-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: "GRPC"
+spec:
+  tls:
+  - secretName: auth-poc-auth-secret
+  - secretName: auth-poc-user-secret
+  rules:
+  - host: auth-poc-auth-service.mongodb.svc.cluster.local
+    http:
+      paths:
+      - pathType: ImplementationSpecific
+        backend:
+          service:
+            name: auth-poc-auth-service
+            port:
+              number: 30001
+  - host: auth-poc-user-service.mongodb.svc.cluster.local
+    http:
+      paths:
+      - pathType: ImplementationSpecific
+        backend:
+          service:
+            name: auth-poc-user-service
+            port:
+              number: 30002
